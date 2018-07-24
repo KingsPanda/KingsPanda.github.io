@@ -9,19 +9,20 @@
   <title>模型评估 | 小黑屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模型评估">
 <meta property="og:url" content="http://yoursite.com/2018/07/24/模型评估/index.html">
 <meta property="og:site_name" content="小黑屋">
 <meta property="og:description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/PR.png">
-<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/思维导图.png">
-<meta property="og:updated_time" content="2018-07-24T12:07:36.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/PR.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/思维导图.png">
+<meta property="og:updated_time" content="2018-07-24T12:17:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模型评估">
 <meta name="twitter:description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
-<meta name="twitter:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/PR.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/24/模型评估/PR.png">
   
     <link rel="alternative" href="/atom.xml" title="小黑屋" type="application/atom+xml">
   
@@ -208,7 +209,7 @@
 <p>R = TP / (TP + FN)</p>
 </blockquote>
 <p>一般来说，查准率高时查全率偏低，查全率高时查准率偏低。</p>
-<p>直观来看，大致如下图所示：<br><img src="~/hexo/source/_posts/PR.png" alt=""></p>
+<p>直观来看，大致如下图所示：<br><img src="/2018/07/24/模型评估/PR.png" alt="PR"></p>
 <h2 id="P-R图"><a href="#P-R图" class="headerlink" title="P-R图"></a>P-R图</h2><p>以查准率为纵轴，查全率为横轴作图得到P-R图。一般来说，如果曲线A完全“包住”了曲线B，那么可以认为前者性能更好。</p>
 <p>P-R图上查准率=查全率的点为平衡点BEP<code>break-even point</code></p>
 <p>与BEP对应的是F1度量：F1 = ( 2 <em> P </em> R ) / ( P + R )</p>
@@ -276,7 +277,7 @@
 <p>一般的，我们按照6:2:2的比例将数据集分为训练集<code>traing set</code>，验证集<code>cross validation set</code>，测试集<code>test set</code>。</p>
 <p>通过训练集训练得到多个模型，通过验证集计算并选择在验证集上的仍误差较小的模型，</p>
 <p>最后通过测试集计算选中模型的泛化误差，这样得到的学习器具有较好的性能。</p>
-<h2 id="附思维导图："><a href="#附思维导图：" class="headerlink" title="附思维导图："></a>附思维导图：</h2><p><img src="~/hexo/source/_posts/思维导图.png" alt=""></p>
+<h2 id="附思维导图："><a href="#附思维导图：" class="headerlink" title="附思维导图："></a>附思维导图：</h2><p><img src="/2018/07/24/模型评估/思维导图.png" alt="SWDT"></p>
 
       
 
@@ -306,6 +307,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
