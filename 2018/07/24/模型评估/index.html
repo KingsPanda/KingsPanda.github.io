@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>机器学习概述 | 小黑屋</title>
+  <title>模型评估 | 小黑屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.什么是机器学习人类自身的活动大多是基于经验做出的判断。我们通过积累经验，通过对经验的利用，对新情况做出有效的决策。那么计算机能帮忙吗？机器学习正是这样一门学科，它致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。    在计算机系统中，“经验”以数据的形式存在，机器学习即是研究在数据的基础上产生“模型”model的算法，也即“学习算法”learning algorithm。学习算法基">
-<meta name="keywords" content="机器学习">
+  <meta name="description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习概述">
-<meta property="og:url" content="http://yoursite.com/2018/07/24/机器学习概述/index.html">
+<meta property="og:title" content="模型评估">
+<meta property="og:url" content="http://yoursite.com/2018/07/24/模型评估/index.html">
 <meta property="og:site_name" content="小黑屋">
-<meta property="og:description" content="1.什么是机器学习人类自身的活动大多是基于经验做出的判断。我们通过积累经验，通过对经验的利用，对新情况做出有效的决策。那么计算机能帮忙吗？机器学习正是这样一门学科，它致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。    在计算机系统中，“经验”以数据的形式存在，机器学习即是研究在数据的基础上产生“模型”model的算法，也即“学习算法”learning algorithm。学习算法基">
+<meta property="og:description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-24T11:44:19.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/PR.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/思维导图.png">
+<meta property="og:updated_time" content="2018-07-24T12:07:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习概述">
-<meta name="twitter:description" content="1.什么是机器学习人类自身的活动大多是基于经验做出的判断。我们通过积累经验，通过对经验的利用，对新情况做出有效的决策。那么计算机能帮忙吗？机器学习正是这样一门学科，它致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。    在计算机系统中，“经验”以数据的形式存在，机器学习即是研究在数据的基础上产生“模型”model的算法，也即“学习算法”learning algorithm。学习算法基">
+<meta name="twitter:title" content="模型评估">
+<meta name="twitter:description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/24/模型评估/~/hexo/source/_posts/PR.png">
   
     <link rel="alternative" href="/atom.xml" title="小黑屋" type="application/atom+xml">
   
@@ -155,36 +157,126 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-机器学习概述" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模型评估" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      机器学习概述
+      模型评估
     </h1>
   
 
         
-        <a href="/2018/07/24/机器学习概述/" class="archive-article-date">
-  	<time datetime="2018-07-24T11:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
+        <a href="/2018/07/24/模型评估/" class="archive-article-date">
+  	<time datetime="2018-07-24T11:45:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-什么是机器学习"><a href="#1-什么是机器学习" class="headerlink" title="1.什么是机器学习"></a>1.什么是机器学习</h2><p>人类自身的活动大多是基于经验做出的判断。我们通过积累经验，通过对经验的利用，对新情况做出有效的决策。那么计算机能帮忙吗？机器学习正是这样一门学科，它致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。<br>    在计算机系统中，“经验”以数据的形式存在，机器学习即是研究在数据的基础上产生“模型”<code>model</code>的算法，也即“学习算法”<code>learning algorithm</code>。学习算法基于数据产生模型，在面对新的数据时，模型会做出相应的判断。</p>
-<h2 id="2-机器学习的任务是什么"><a href="#2-机器学习的任务是什么" class="headerlink" title="2.机器学习的任务是什么"></a>2.机器学习的任务是什么</h2><p>当今世界，数据越来越多也越来越重要，数据的收集、存储、处理、应用问题也需要我们深入的研究。机器学习的任务即是对数据进行处理：包括但不限于分类、回归预测、聚类、决策。<br>    数据分为离散的和连续的，有标记<code>label</code>/特征<code>feature</code>的和无标记/特征的。<br>分类分为二分类和多分类，回归分为线性回归和非线性回归，机器学习分为监督学习、无监督学习和强化学习。</p>
-<h2 id="3-机器学习的发展历程"><a href="#3-机器学习的发展历程" class="headerlink" title="3.机器学习的发展历程"></a>3.机器学习的发展历程</h2><p>二十世纪五十年代：初期已有机器学习相关研究，中后期，基于神经网络的“连接主义”<code>connectionism</code>学习开始出现。</p>
-<p>二十世纪六七十年代：基于逻辑表示的“符号主义”<code>symbolism</code>学习技术蓬勃发展。以决策理论为基础的学习技术以及强化学习技术等也得到发展。</p>
-<p>二十世纪五十年代到七十年代初：人工智能研究处于推理期，那时人们认为只要赋予机器逻辑推理的能力，机器就能具有智能。</p>
-<p>代表性工作：逻辑理论家程序<code>logic theorist</code>、通用问题求解程序<code>general problem solving</code>。</p>
-<p>二十世纪七十年代中期：人工智能研究进入了知识期，人们逐渐意识到要使机器具有智能，就必须设法使机器具有知识。这一时期出现了大量的专家系统。</p>
-<p>二十世纪八十年代：是机器学习成为一个独立的学科领域、各种机器学习技术百花初绽的时期。机器学习被视为“解决知识工程瓶颈问题的关键”而走上人工智能主舞台。</p>
-<p>二十世纪九十年代中期：“统计学习”<code>statistical learning</code>闪亮登场并迅速占据主流舞台，代表性技术是支持向量机<code>support vector machine</code>，简称SVM。以及更一般的核方法<code>kernel methods</code>。</p>
-<p>二十一世纪初：连接主义学习卷土重来，掀起了以“深度学习”为名的热潮。</p>
+        <h2 id="错误率-error-rate"><a href="#错误率-error-rate" class="headerlink" title="错误率(error rate)"></a>错误率(error rate)</h2><p>我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度<code>accuracy</code>，即“精度 = 1 - 错误率”。（隐式地假设了均等代价）</p>
+<p>更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差<code>error</code>。</p>
+<h2 id="欠拟合-underfitting-与过拟合-overfitting"><a href="#欠拟合-underfitting-与过拟合-overfitting" class="headerlink" title="欠拟合(underfitting)与过拟合(overfitting)"></a>欠拟合(underfitting)与过拟合(overfitting)</h2><p>欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降。</p>
+<p>欠拟合比较容易克服，过拟合是机器学习面临的关键障碍。但过拟合是无法彻底避免的，我们所能做的只是缓解。</p>
+<p>一般来说，偏差过大意味着欠拟合，方差过大对应着过拟合。</p>
+<h2 id="模型选择问题-model-selection"><a href="#模型选择问题-model-selection" class="headerlink" title="模型选择问题(model selection)"></a>模型选择问题(model selection)</h2><p>理想的解决方案是对候选模型的“泛化误差”进行评估，然后选择泛化误差最小的那个模型。但我们无法直接获得泛化误差，训练误差又因为过拟合现象不适合作为标准。所以我们采用以下的评估方法。</p>
+<p>评估方法：将数据分为训练集与测试集，通过测试集<code>testing set</code>来测试学习器对新样本的判别能力，然后以测试集上的测试误差近似作为泛化误差，我们通常假设测试样本也是从样本真实分布中独立同分布采样而得。注意测试集应尽量与训练集互斥。</p>
+<p>产生训练集与测试集的常见方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">留出法：直接将数据集划分为两个互斥的集合（大约2/3~4/5的样本用于训练，剩余样本用于测试），注意需要保持数据分布的一致性，从采样的方面看应采用分层采样。使用留出法时一般要采用若干次随机划分、重复进行实验评估后取平均值作为留出法的评估结果。</span><br><span class="line"></span><br><span class="line">交叉验证法：将数据分为大小差不多的k个互斥的集合（分层采样），k-1个用于训练，剩余的用于测试，重复k次。与留出法类似，k折交叉验证法通常要随机使用不同的划分p次，取均值作为评估结果。</span><br><span class="line"></span><br><span class="line">自助法：有放回的从含有m个样本的数据集D中采样，每次采样一个，这个过程重复m次，得到新的数据集D&apos;，那么D中不在新数据集中出现的数据大概占0.368。于是我们用D&apos;作为训练集，用D\D&apos;作为测试集。</span><br></pre></td></tr></table></figure>
+<p>更一般的，我们按照6:2:2的比例将数据集分为训练集<code>traing set</code>，验证集<code>cross validation set</code>，测试集<code>test set</code>。</p>
+<p>通过训练集训练得到多个模型，通过验证集计算并选择在验证集上的仍误差较小的模型，最后通过测试集计算选中模型的泛化误差</p>
+<h2 id="性能度量-performance-measure"><a href="#性能度量-performance-measure" class="headerlink" title="性能度量(performance measure)"></a>性能度量(performance measure)</h2><p>对于回归任务，常用的性能度量是“均方误差”，或代价函数。</p>
+<p>对于分类任务，常用的性能度量为以下几种：</p>
+<ul>
+<li>错误率<code>error rate</code>与精度<code>accuracy</code></li>
+<li>查准率<code>precision</code>与查全率<code>recall</code></li>
+</ul>
+<p>首先，我们定义：</p>
+<ol>
+<li>TN / True Negative: case was negative and predicted negative </li>
+<li>TP / True Positive: case was positive and predicted positive </li>
+<li>FN / False Negative: case was positive but predicted negative </li>
+<li>FP / False Positive: case was negative but predicted positive</li>
+</ol>
+<blockquote>
+<p>P = TP / (TP + FP)</p>
+</blockquote>
+<blockquote>
+<p>R = TP / (TP + FN)</p>
+</blockquote>
+<p>一般来说，查准率高时查全率偏低，查全率高时查准率偏低。</p>
+<p>直观来看，大致如下图所示：<br><img src="~/hexo/source/_posts/PR.png" alt=""></p>
+<h2 id="P-R图"><a href="#P-R图" class="headerlink" title="P-R图"></a>P-R图</h2><p>以查准率为纵轴，查全率为横轴作图得到P-R图。一般来说，如果曲线A完全“包住”了曲线B，那么可以认为前者性能更好。</p>
+<p>P-R图上查准率=查全率的点为平衡点BEP<code>break-even point</code></p>
+<p>与BEP对应的是F1度量：F1 = ( 2 <em> P </em> R ) / ( P + R )</p>
+<p>F1度量的一般形式为 F1β = [ ( 1 + β^2 ) <em> P </em> R ] / [ ( β^2 * P ) + R ]</p>
+<p>β &gt; 1时查全率有更大影响；β &lt; 1时查准率有更大影响。</p>
+<p>ROC<code>receiver operating characteristic</code> Curve<br>ROC曲线纵轴为真正例率TPR，横轴为假正例率FPR，用来评估一般情况下学习器泛化性能的好坏。</p>
+<p>AUC(area under ROC curve)</p>
+<p>对于ROC曲线，常用曲线下面积，即AUC来度量学习器的性能。</p>
+<h2 id="代价敏感错误率与代价曲线"><a href="#代价敏感错误率与代价曲线" class="headerlink" title="代价敏感错误率与代价曲线"></a>代价敏感错误率与代价曲线</h2><p>前面的性能度量其实都隐式地假设了，学习器做出错误分类时的代价是一样的，</p>
+<p>然而往往在现实生活中，不同的错误的代价是不同的。</p>
+<p>为权衡不同错误所造成的不同损失，可为错误赋予“非均等代价”<code>unequal cost</code>，</p>
+<p>我们所希望的不再是简单的最小化错误次数，而是希望最小化“总体代价”。</p>
+<p>在非均等代价下，ROC曲线不能直接反映学习器的期望总体代价，而“代价曲线”则可以达到目的。</p>
+<h2 id="比较检验"><a href="#比较检验" class="headerlink" title="比较检验"></a>比较检验</h2><p>学习器性能的比较是很复杂的一件事，简单地讲，学习器的性能评估结果可能会随测试集的不同而有很大差异。</p>
+<p>因而我们需要考虑的是，若在测试集T上观察到学习器A比学习器B好，</p>
+<p><strong>那么学习器A的泛化性能是否在统计意义上要优于学习器B。</strong></p>
+<p>而假设检验，为我们的考虑提供了解决办法。</p>
+<p>这牵涉到一定的数学知识，总的思路大致是：</p>
+<p>由样本的测试错误率推出学习器的泛化错误率的分布，并在统计意义上得出结论：是否拒绝相应的假设</p>
+<h3 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h3><p>对一个测试集中的数据进行分类，单次分类的错误的概率为β0，总的测试错误率为β1，那么泛化错误率β0的学习器被测得测试错误率为β1的概率分布满足二项分布。</p>
+<p>提出原假设H0，备择假设H1，由α求得临界值，若测试错误率小于临界值，在α的显著度下，假设H0不能被拒绝，即能以1-α的置信度认为H0成立，否则假设H0可以被拒绝，即在显著度为α的情况下可以认为H1成立。</p>
+<p> 大多时候，我们需要进行多次训练/测试，得到多个测试错误率，这时我们采用另一种相似的方法—-t检验</p>
+<h3 id="t检验"><a href="#t检验" class="headerlink" title="t检验"></a>t检验</h3><p>多次留出法或交叉验证法得到多个测试错误率，由样本集的均值和方差，推出学习器的均值（泛化错误率）。</p>
+<p>将k个测试错误率看做泛化错误率的独立采样，构造服从自由度为k - 1的t分布的变量 </p>
+<p>考虑双边假设，在一定的显著度下，得出统计意义上的结论：是否拒绝相应的假设</p>
+<p>以上两种方法适用于对单个学习器的泛化性能进行检验，对于多个学习器性能的比较，我们采用以下的方法：</p>
+<h3 id="交叉验证t检验"><a href="#交叉验证t检验" class="headerlink" title="交叉验证t检验"></a>交叉验证t检验</h3><p>基于一个数据样本集对不同的学习器性能进行比较。</p>
+<p>这里的基本思想是若两个学习器的性能相同，则它们使用相同的训练/测试集得到的测试错误率应相同。</p>
+<p>对每对结果求差△，若两个学习器性能相同，则差值均值应为零。因此可根据差值△1、△2、△3……△k 来对“学习器A和学习器B性能相同”这个假设做t检验，计算出差值的均值与方差。同样的对△构造新的随机变量，在显著度α下，计算出临界值进行判断是否拒绝原假设。</p>
+<h3 id="McNemar-检验"><a href="#McNemar-检验" class="headerlink" title="McNemar 检验"></a>McNemar 检验</h3><p>对于二分类问题，由测试数据得到e00，e01，e10，e11</p>
+<p>构造服从自由度为1的卡方分布的变量，并在一定的显著度下，得出在统计意义上的结论：是否拒绝相应的假设。</p>
+<p>即两学习器的性能是否有显著差异。</p>
+<h3 id="Friedman-检验-与-Nemenyi-后续检验"><a href="#Friedman-检验-与-Nemenyi-后续检验" class="headerlink" title="Friedman 检验 与 Nemenyi 后续检验"></a>Friedman 检验 与 Nemenyi 后续检验</h3><p>对基于多个数据样本集的多个学习器性能进行比较。</p>
+<ol>
+<li><p>使用留出法或交叉验证法得到每个算法在不同数据集上的测试结果。</p>
+</li>
+<li><p>然后在每个数据集上根据测试性能有好到坏排序，并赋序值1，2，… ；若算法测试性能相同，则平分序值。</p>
+</li>
+<li><p>得到每个模型的平均序值。</p>
+</li>
+<li><p>构造符合卡方分布/F分布的随机变量。</p>
+</li>
+<li><p>在显著度α下，得到临界值，判断是否拒绝原假设H0:“所有算法的性能相同”。</p>
+</li>
+<li><p>若拒绝原假设，这时需进行后续检验，计算出平均序值差别的临界值域CD，若两算法的平均序值之差超过了临界值域CD， 则以 相应的置信度拒绝“两个算法性能相同”这一假设。</p>
+</li>
+</ol>
+<h2 id="偏差与方差"><a href="#偏差与方差" class="headerlink" title="偏差与方差"></a>偏差与方差</h2><ul>
+<li><p>噪声：标记值与真实值的差的平方的期望。</p>
+</li>
+<li><p>偏差：预测输出的期望与与真实标记的差别。</p>
+</li>
+</ul>
+<p>对算法的期望泛化误差进行分解得：</p>
+<p><strong><em>E(f;D) = bias^2(x) + var(x) + ε^2</em></strong></p>
+<p>也就是说，泛化误差可分解为偏差、方差与噪声之和。</p>
+<p>偏差刻画了学习算法本身的拟合能力</p>
+<p>方差刻画了数据扰动所造成的影响</p>
+<p>噪声刻画了问题本身的学习难度</p>
+<p>由此可见，学习器的泛化性能是由学习算法的能力、数据的充分性、以及学习任务本身的难度所共同决定的。</p>
+<p>并且可以看到，当偏差和方差都较小的时候，我们可以得到泛化性能较好的学习器，但往往偏差和方差是有冲突的，</p>
+<p>即随着模型训练程度的增加，模型对数据的拟合程度越来越高，偏差就会越小，方差会越大，模型受数据变动的影响越大，</p>
+<p>即会出现过拟合的现象。</p>
+<p>所以，我们一般将数据集分为三部分：</p>
+<p>一般的，我们按照6:2:2的比例将数据集分为训练集<code>traing set</code>，验证集<code>cross validation set</code>，测试集<code>test set</code>。</p>
+<p>通过训练集训练得到多个模型，通过验证集计算并选择在验证集上的仍误差较小的模型，</p>
+<p>最后通过测试集计算选中模型的泛化误差，这样得到的学习器具有较好的性能。</p>
+<h2 id="附思维导图："><a href="#附思维导图：" class="headerlink" title="附思维导图："></a>附思维导图：</h2><p><img src="~/hexo/source/_posts/思维导图.png" alt=""></p>
 
       
 
@@ -214,17 +306,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -275,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/24/机器学习概述/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/24/模型评估/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,15 +370,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/24/模型评估/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          模型评估
-        
-      </div>
-    </a>
   
+    <a href="/2018/07/24/机器学习概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习概述</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -326,8 +403,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2018/07/24/机器学习概述/", 
-    sourceId: "机器学习概述",
+    url: "http://yoursite.com/2018/07/24/模型评估/", 
+    sourceId: "模型评估",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
