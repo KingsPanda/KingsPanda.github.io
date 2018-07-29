@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/PR.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/模型评估/思维导图.png">
-<meta property="og:updated_time" content="2018-07-24T12:17:44.000Z">
+<meta property="og:updated_time" content="2018-07-29T06:20:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模型评估">
 <meta name="twitter:description" content="错误率(error rate)我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度accuracy，即“精度 = 1 - 错误率”。（隐式地假设了均等代价） 更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差error。 欠拟合(underfitting)与过拟合(overfitting)欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降">
@@ -242,21 +242,7 @@
 <h3 id="McNemar-检验"><a href="#McNemar-检验" class="headerlink" title="McNemar 检验"></a>McNemar 检验</h3><p>对于二分类问题，由测试数据得到e00，e01，e10，e11</p>
 <p>构造服从自由度为1的卡方分布的变量，并在一定的显著度下，得出在统计意义上的结论：是否拒绝相应的假设。</p>
 <p>即两学习器的性能是否有显著差异。</p>
-<h3 id="Friedman-检验-与-Nemenyi-后续检验"><a href="#Friedman-检验-与-Nemenyi-后续检验" class="headerlink" title="Friedman 检验 与 Nemenyi 后续检验"></a>Friedman 检验 与 Nemenyi 后续检验</h3><p>对基于多个数据样本集的多个学习器性能进行比较。</p>
-<ol>
-<li><p>使用留出法或交叉验证法得到每个算法在不同数据集上的测试结果。</p>
-</li>
-<li><p>然后在每个数据集上根据测试性能有好到坏排序，并赋序值1，2，… ；若算法测试性能相同，则平分序值。</p>
-</li>
-<li><p>得到每个模型的平均序值。</p>
-</li>
-<li><p>构造符合卡方分布/F分布的随机变量。</p>
-</li>
-<li><p>在显著度α下，得到临界值，判断是否拒绝原假设H0:“所有算法的性能相同”。</p>
-</li>
-<li><p>若拒绝原假设，这时需进行后续检验，计算出平均序值差别的临界值域CD，若两算法的平均序值之差超过了临界值域CD， 则以 相应的置信度拒绝“两个算法性能相同”这一假设。</p>
-</li>
-</ol>
+<h3 id="Friedman-检验-与-Nemenyi-后续检验"><a href="#Friedman-检验-与-Nemenyi-后续检验" class="headerlink" title="Friedman 检验 与 Nemenyi 后续检验"></a>Friedman 检验 与 Nemenyi 后续检验</h3><p>对基于多个数据样本集的多个学习器性能进行比较。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.使用留出法或交叉验证法得到每个算法在不同数据集上的测试结果。</span><br><span class="line"></span><br><span class="line">2.然后在每个数据集上根据测试性能有好到坏排序，并赋序值1，2，... ；若算法测试性能相同，则平分序值。</span><br><span class="line"></span><br><span class="line">3.得到每个模型的平均序值。</span><br><span class="line"></span><br><span class="line">4.构造符合卡方分布/F分布的随机变量。</span><br><span class="line"></span><br><span class="line">5.在显著度α下，得到临界值，判断是否拒绝原假设H0:“所有算法的性能相同”。</span><br><span class="line"></span><br><span class="line">6.若拒绝原假设，这时需进行后续检验，计算出平均序值差别的临界值域CD，若两算法的平均序值之差超过了临界值域CD， 则以 相应的置信度拒绝“两个算法性能相同”这一假设。</span><br></pre></td></tr></table></figure></p>
 <h2 id="偏差与方差"><a href="#偏差与方差" class="headerlink" title="偏差与方差"></a>偏差与方差</h2><ul>
 <li><p>噪声：标记值与真实值的差的平方的期望。</p>
 </li>
