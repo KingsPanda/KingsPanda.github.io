@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/7 | 小黑屋</title>
+  <title>暑期机器学习小组模型实现----Logistic Regression.md | 小黑屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小黑屋">
-<meta property="og:url" content="http://yoursite.com/archives/2018/07/index.html">
+  <meta name="description" content="实验思路 在octave中，利用rand函数生成两类随机数，一类的y &amp;gt; x^2，另一类的y &amp;lt; x^2 将数据导出，存为txt文件 用代价函数评估优化模型性能，用precision，recall来对模型性能进行评估 采用梯度下降法对模型进行优化代码展示1234567891011121314151617181920212223242526272829303132333435363738">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暑期机器学习小组模型实现----Logistic Regression.md">
+<meta property="og:url" content="http://yoursite.com/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/index.html">
 <meta property="og:site_name" content="小黑屋">
+<meta property="og:description" content="实验思路 在octave中，利用rand函数生成两类随机数，一类的y &amp;gt; x^2，另一类的y &amp;lt; x^2 将数据导出，存为txt文件 用代价函数评估优化模型性能，用precision，recall来对模型性能进行评估 采用梯度下降法对模型进行优化代码展示1234567891011121314151617181920212223242526272829303132333435363738">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/trainingSet.png">
+<meta property="og:updated_time" content="2018-07-29T06:10:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小黑屋">
+<meta name="twitter:title" content="暑期机器学习小组模型实现----Logistic Regression.md">
+<meta name="twitter:description" content="实验思路 在octave中，利用rand函数生成两类随机数，一类的y &amp;gt; x^2，另一类的y &amp;lt; x^2 将数据导出，存为txt文件 用代价函数评估优化模型性能，用precision，recall来对模型性能进行评估 采用梯度下降法对模型进行优化代码展示1234567891011121314151617181920212223242526272829303132333435363738">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/trainingSet.png">
   
     <link rel="alternative" href="/atom.xml" title="小黑屋" type="application/atom+xml">
   
@@ -150,36 +157,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-暑期机器学习小组模型实现-Logistic-Regression" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      暑期机器学习小组模型实现----Logistic Regression.md
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/" class="archive-article-date">
+
+        
+        <a href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/" class="archive-article-date">
   	<time datetime="2018-07-29T05:37:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/">暑期机器学习小组模型实现----Logistic Regression.md</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h2><ul>
+<li>在octave中，利用rand函数生成两类随机数，一类的y &gt; x^2，另一类的y &lt; x^2</li>
+<li>将数据导出，存为txt文件</li>
+<li>用代价函数评估优化模型性能，用precision，recall来对模型性能进行评估</li>
+<li>采用梯度下降法对模型进行优化<h2 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  main.cpp</span></span><br><span class="line"><span class="comment">//  logistic regression</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by zsp on 16/07/2018.</span></span><br><span class="line"><span class="comment">//  Copyright © 2018 zsp. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> SAMPLE = <span class="number">402</span>;     <span class="comment">// 样本数</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PARAMETER = <span class="number">2</span>;    <span class="comment">// 特征数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">hypoVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> fea[], <span class="keyword">int</span> count)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">costVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> allX[][PARAMETER + <span class="number">1</span>], <span class="keyword">double</span> label[], <span class="keyword">int</span> amount, <span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义二维数组存储数据</span></span><br><span class="line">    <span class="keyword">double</span> X[SAMPLE][PARAMETER + <span class="number">1</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="comment">// 打开文件</span></span><br><span class="line">    fstream infile;</span><br><span class="line">    infile.open(<span class="string">"dataset.txt"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!infile)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"cannot open file!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            infile &gt;&gt; X[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 验证是否写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; X[i][j] &lt;&lt; <span class="string">"\t\t"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> y[SAMPLE] = &#123; <span class="number">0</span> &#125;;   <span class="comment">// label vector</span></span><br><span class="line">    <span class="keyword">double</span> theta[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;   <span class="comment">// parameter vector</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        y[i] = X[i][PARAMETER];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> h = hypoVal(theta, X[<span class="number">0</span>], PARAMETER); <span class="comment">// hypothesis function</span></span><br><span class="line">    <span class="keyword">double</span> cost = costVal(theta, X, y, SAMPLE, PARAMETER);    <span class="comment">// cost function</span></span><br><span class="line">    <span class="keyword">double</span> a = <span class="number">0.314</span>; <span class="comment">// set the learning rate as</span></span><br><span class="line">    <span class="comment">// 梯度下降法求最优解</span></span><br><span class="line">    <span class="keyword">double</span> tempCost = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">double</span> temp[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">double</span> der[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        tempCost = cost;</span><br><span class="line">        <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += (hypoVal(theta, X[i], PARAMETER) - y[i]) * X[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            der[j] = (<span class="number">1.0</span> / <span class="keyword">double</span> (SAMPLE)) * sum;</span><br><span class="line">            temp[j] = theta[j] - a * der[j];</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += (hypoVal(theta, X[i], PARAMETER) - y[i]) * <span class="built_in">pow</span>(X[i][j], <span class="number">2.0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            der[j + PARAMETER] = (<span class="number">1.0</span> / <span class="keyword">double</span> (SAMPLE)) * sum;</span><br><span class="line">            temp[j + PARAMETER] = theta[j + PARAMETER] - a * der[j + PARAMETER];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"now the theta parameters are: "</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span> * PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            theta[j] = temp[j];</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; theta[j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        cost = costVal(theta, X, y, SAMPLE, PARAMETER);</span><br><span class="line">        cnt++;</span><br><span class="line">    &#125; <span class="keyword">while</span> (tempCost - cost &gt; <span class="number">0.00001</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"共进行"</span> &lt;&lt; cnt &lt;&lt; <span class="string">"次梯度下降迭代"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// 写入测试集</span></span><br><span class="line">    infile.open(<span class="string">"testset.txt"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!infile)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"cannot open file!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            infile &gt;&gt; X[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();</span><br><span class="line">    <span class="keyword">double</span> tp = <span class="number">0</span>, fp = <span class="number">0</span>, tn = <span class="number">0</span>, fn = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        h = hypoVal(theta, X[i], PARAMETER);</span><br><span class="line">        <span class="keyword">if</span> (h &gt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tp++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &gt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            fp++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &lt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tn++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &lt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            fn++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"precision: "</span> &lt;&lt; tp / (tp + fp) &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"recall: "</span> &lt;&lt; tp / (tp + fn) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">hypoVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> fea[], <span class="keyword">int</span> count)</span>	<span class="comment">//计算假设函数的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//sum += para[0] * fea[0] + para[1] * fea[1] + para[2] * fea[2] * fea[2] + para[3] * fea[3] * fea[3];</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += para[i] * fea[i] + para[i + PARAMETER] * fea[i] * fea[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (<span class="number">1.0</span> + <span class="built_in">exp</span>(-sum));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">costVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> allX[][PARAMETER + <span class="number">1</span>], <span class="keyword">double</span> label[], <span class="keyword">int</span> amount, <span class="keyword">int</span> count)</span>	<span class="comment">//计算代价函数的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; amount; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> hy = hypoVal(para, allX[i], PARAMETER);</span><br><span class="line">        sum += label[i] * <span class="built_in">log</span>(hy) + (<span class="number">1</span> - label[i]) * <span class="built_in">log</span>(<span class="number">1</span> - hy);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"now the cost value is: "</span> &lt;&lt; -(<span class="number">1.0</span> / <span class="keyword">double</span> (amount)) * sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> -(<span class="number">1.0</span> / <span class="keyword">double</span> (amount)) * sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">now the cost value is: 0.693147</span><br><span class="line">now the theta parameters are: -7.8047e-19 0.0785866 -3.03516e-18 0.0549665 </span><br><span class="line">...</span><br><span class="line">now the cost value is: 0.0888141</span><br><span class="line">now the theta parameters are: 0.133379 9.82312 -8.23081 -1.38364 </span><br><span class="line">now the cost value is: 0.0887954</span><br><span class="line">now the theta parameters are: 0.133374 9.82487 -8.23255 -1.38377 </span><br><span class="line">...</span><br><span class="line">now the theta parameters are: 0.127623 11.3934 -9.78998 -1.47413 </span><br><span class="line">now the cost value is: 0.0743945</span><br><span class="line">共进行2996次梯度下降迭代</span><br><span class="line">precision: 0.971014 recall: 1</span><br></pre></td></tr></table></figure>
+<p>可以看到代价函数的值为0.074<br>可以认为训练结果很好<br>可以看到在测试集上，准确率为97%，查全率为100%<br>可以认为学习器泛化能力很强，分类效果非常好</p>
+<h2 id="决策边界"><a href="#决策边界" class="headerlink" title="决策边界"></a>决策边界</h2><p>根据结果我们可以绘制出学习结果，如下图所示<br><img src="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/trainingSet.png" alt="trainingSet.png"></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,95 +227,117 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/24/模型评估/" class="archive-article-date">
-  	<time datetime="2018-07-24T11:45:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/24/模型评估/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">模型评估</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/24/模型评估/">模型评估</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/", 
+    sourceId: "暑期机器学习小组模型实现-Logistic-Regression",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/24/机器学习概述/" class="archive-article-date">
-  	<time datetime="2018-07-24T11:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/24/机器学习概述/">机器学习概述</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -302,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
