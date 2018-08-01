@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>小黑屋</title>
+  <title>Tag: ICML, 论文阅读 | 小黑屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="小黑屋">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/ICML-论文阅读/index.html">
 <meta property="og:site_name" content="小黑屋">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -152,70 +152,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-note-of-Understanding-Black-box-Predictions-via-Influence-Functions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/08/01/note-of-Understanding-Black-box-Predictions-via-Influence-Functions/" class="archive-article-date">
+  	<time datetime="2018-08-01T02:39:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/01/note-of-Understanding-Black-box-Predictions-via-Influence-Functions/">note of Understanding Black-box Predictions via Influence Functions</a>
+      <a class="archive-article-title" href="/2018/08/01/note-of-Understanding-Black-box-Predictions-via-Influence-Functions/">note of Understanding Black-box Predictions via Influence Functions</a>
     </h1>
   
 
-        
-        <a href="/2018/08/01/note-of-Understanding-Black-box-Predictions-via-Influence-Functions/" class="archive-article-date">
-  	<time datetime="2018-08-01T02:39:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="note-of-Understanding-Black-box-Predictions-via-Influence-Functions"><a href="#note-of-Understanding-Black-box-Predictions-via-Influence-Functions" class="headerlink" title="note of Understanding Black-box Predictions via Influence Functions***"></a>note of Understanding Black-box Predictions via Influence Functions***</h1><ul>
-<li><p>问题：为什么数据的轻微扰动会导致模型的巨大改变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A key question often asked of machine learning systems is “Why did the system make this prediction?” We want models that are not just high-performing but also explainable.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>思路：通过influence function来从模型结果回溯到算法，再回溯到数据集中查找原因</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Answering this question by perturbing the data and retraining the model can be prohibitively expensive. To overcome this problem, we use influence functions, a classic technique from robust statistics (Cook &amp; Weisberg, 1980) that tells us how the model parameters change as we upweight a training point by an infinitesimal amount. This allows us to “differentiate through the training” to estimate in closedform the effect of a variety of training perturbations.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>主要问题：常规算法计算的复杂度太高</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There are two computational challenges ...</span><br><span class="line">With n training points and θ ∈ R^p, this requires O(np 2 + p 3 ) operations, which is too expensive for models like deep neural networks with millions of parameters. Second, we often want to calculate I_up,loss (z_i , z_test ) across all training points z_i.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>算法及优化算法：CG(Conjugate gradients)算法与 Stochastic estimation<br>经过实践，经验表明，Stochastic estimation显著提高了算法的效率</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Empirically, we found this significantly faster than CG.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证与扩展<br>实验表明，尽管上述算法的前提为1)模型参数使得经验风险最小化，2)经验风险是二次可微并且是严格的凸函数。当前提条件不满足时，上述算法仍能提供准确的近似，提供有价值的信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Here, we empirically show that influence functions are accurate approximations (Section 4.1) that provide useful information even when these assumptions are violated (Sections 4.2, 4.3).</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不可微情况的解决办法<br>用SmoothHinge(s, t)近似Hinge(s)，损失函数的计算可以很近似，结果较为准确。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">For the purposes of calculating influence, we approximated Hinge(s) with SmoothHinge(s, t), Using the same SVM weights as before, we found that calculating I_up,loss using SmoothHinge(s, 0.001) closely matched the actual change due to retraining in the original Hinge(s) (Pearson’s R = 0.95; Fig 3b-Mid) and remained accurate over a wide range of t (Fig 3b-Right).</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实践：鱼和狗分类问题、原始模型与高斯核函数SVM结果对比<br>高斯核函数SVM的损失随像素距离的增大而降低，原始模型则几乎没有影响。<br>对模型将‘测试鱼’样本正确分类为‘鱼’有帮助的‘训练样本’为与‘测试样本’相差较大的‘狗’的样本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Moreover, in the RBF SVM, ﬁsh (green points) close to the test image were mostly helpful, while dogs (red) were mostly harmful, with the RBF acting as a soft nearest neighbor function (Fig 4-Left). In contrast, in the Inception network, ﬁsh and dogs could be helpful or harmful for correctly classifying the test image as a ﬁsh; in fact, some of the most helpful training images were dogs that, to the model, looked very different from the test ﬁsh (Fig 4-Top).</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实践：测试样本攻击 – 欺骗分类器<br>通过特定的构造，得到视觉上并无差异的训练图像，可以增大学习器的损失，欺骗学习器做出错误的分类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The key idea is that I_pert,loss (z, z test ) tells us how to modify training point z to most increase the loss on z test .</span><br><span class="line">Concretely, for a target test image z test , we can construct ˜z i , an adversarial version of a training image z i , by initializing ˜z i := z i and then iterating ˜z i := Π(˜z i + α sign(I_pert,loss (˜z i , z test ))), where α is the step size and Π projects onto the set of valid images that share the same 8bit representation with z i . After each iteration, we retrain the model. This is an iterated, training-set analogue of the methods used by, e.g., Goodfellow et al. (2015); MoosaviDezfooli et al. (2016) for test-set attacks.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>通过计算I_pert,loss可以帮助模型开发者评估模型受攻击的承受能力<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Measuring the magnitude of I_pert,loss gives model developers a way of quantifying how vulnerable their models are to training-set attacks.</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>实践：influence function可以帮助我们找出对模型的错误判断起较大作用的样本<br>通过对24名孩童是否再次入院的数据进行域不匹配处理，实验表明，influence function可以帮助我们找出导致模型做出错误判断的，影响最大的几个样本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Picking a random child z test that the model got wrong, we calculated −I up,loss (z i , z test ) for each training point z i . This</span><br><span class="line">clearly highlighted the 4 training children, each of whom were 30-40 times as influential as the next most influential examples. The 1 child in the training set who was not readmitted had a very positive influence, while the other 3 had very negative influences. Moreover, calculating I_pert,loss on these 4 children showed that the ‘child’ indicator variable contributed significantly to the magnitude of I_up,loss .</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实践：influence function帮助人们在实际任务中检查被错误标记的样本节省时间<br>实际任务中，所用的训练集中难免会存在一定比例的样本被错误标记，那么训练所得的学习器显然效果不够好，为了修正模型，我们使用一定比例的训练集样本和influence function来找出被错误标记的样本从而减轻人的压力，并对模型进行修正</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Using influence functions to prioritize the training points to inspect allowed us to repair the dataset (Fig 6, blue) without checking too many points, outperforming the baselines of checking points with the highest train loss (Fig 6, green) or at random (Fig 6, red).</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们期待通过influence function来帮助我们更好地开发，理解，评估修正复杂的、高性能的机器学习黑箱模型。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -227,366 +191,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/01/note-of-Understanding-Black-box-Predictions-via-Influence-Functions/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-暑期机器学习小组模型实现-Logistic-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/">暑期机器学习小组模型实现----Logistic Regression</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/" class="archive-article-date">
-  	<time datetime="2018-07-29T05:37:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h2><ul>
-<li>在octave中，利用rand函数生成两类随机数，一类的y &gt; x^2，另一类的y &lt; x^2</li>
-<li>将数据导出，存为txt文件</li>
-<li>用代价函数评估优化模型性能，用precision，recall来对模型性能进行评估</li>
-<li>采用梯度下降法对模型进行优化<h2 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  main.cpp</span></span><br><span class="line"><span class="comment">//  logistic regression</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by zsp on 16/07/2018.</span></span><br><span class="line"><span class="comment">//  Copyright © 2018 zsp. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> SAMPLE = <span class="number">402</span>;     <span class="comment">// 样本数</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> PARAMETER = <span class="number">2</span>;    <span class="comment">// 特征数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">hypoVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> fea[], <span class="keyword">int</span> count)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">costVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> allX[][PARAMETER + <span class="number">1</span>], <span class="keyword">double</span> label[], <span class="keyword">int</span> amount, <span class="keyword">int</span> count)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义二维数组存储数据</span></span><br><span class="line">    <span class="keyword">double</span> X[SAMPLE][PARAMETER + <span class="number">1</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="comment">// 打开文件</span></span><br><span class="line">    fstream infile;</span><br><span class="line">    infile.open(<span class="string">"dataset.txt"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!infile)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"cannot open file!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            infile &gt;&gt; X[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 验证是否写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; X[i][j] &lt;&lt; <span class="string">"\t\t"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> y[SAMPLE] = &#123; <span class="number">0</span> &#125;;   <span class="comment">// label vector</span></span><br><span class="line">    <span class="keyword">double</span> theta[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;   <span class="comment">// parameter vector</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        y[i] = X[i][PARAMETER];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> h = hypoVal(theta, X[<span class="number">0</span>], PARAMETER); <span class="comment">// hypothesis function</span></span><br><span class="line">    <span class="keyword">double</span> cost = costVal(theta, X, y, SAMPLE, PARAMETER);    <span class="comment">// cost function</span></span><br><span class="line">    <span class="keyword">double</span> a = <span class="number">0.314</span>; <span class="comment">// set the learning rate as</span></span><br><span class="line">    <span class="comment">// 梯度下降法求最优解</span></span><br><span class="line">    <span class="keyword">double</span> tempCost = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">double</span> temp[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">double</span> der[<span class="number">2</span> * PARAMETER] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        tempCost = cost;</span><br><span class="line">        <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += (hypoVal(theta, X[i], PARAMETER) - y[i]) * X[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            der[j] = (<span class="number">1.0</span> / <span class="keyword">double</span> (SAMPLE)) * sum;</span><br><span class="line">            temp[j] = theta[j] - a * der[j];</span><br><span class="line">            sum = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += (hypoVal(theta, X[i], PARAMETER) - y[i]) * <span class="built_in">pow</span>(X[i][j], <span class="number">2.0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            der[j + PARAMETER] = (<span class="number">1.0</span> / <span class="keyword">double</span> (SAMPLE)) * sum;</span><br><span class="line">            temp[j + PARAMETER] = theta[j + PARAMETER] - a * der[j + PARAMETER];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"now the theta parameters are: "</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span> * PARAMETER; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            theta[j] = temp[j];</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; theta[j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        cost = costVal(theta, X, y, SAMPLE, PARAMETER);</span><br><span class="line">        cnt++;</span><br><span class="line">    &#125; <span class="keyword">while</span> (tempCost - cost &gt; <span class="number">0.00001</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"共进行"</span> &lt;&lt; cnt &lt;&lt; <span class="string">"次梯度下降迭代"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// 写入测试集</span></span><br><span class="line">    infile.open(<span class="string">"testset.txt"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!infile)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"cannot open file!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 写入数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PARAMETER + <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            infile &gt;&gt; X[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    infile.close();</span><br><span class="line">    <span class="keyword">double</span> tp = <span class="number">0</span>, fp = <span class="number">0</span>, tn = <span class="number">0</span>, fn = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SAMPLE; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        h = hypoVal(theta, X[i], PARAMETER);</span><br><span class="line">        <span class="keyword">if</span> (h &gt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tp++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &gt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            fp++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &lt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tn++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (h &lt; <span class="number">0.5</span> &amp;&amp; X[i][PARAMETER] == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            fn++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"precision: "</span> &lt;&lt; tp / (tp + fp) &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"recall: "</span> &lt;&lt; tp / (tp + fn) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">hypoVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> fea[], <span class="keyword">int</span> count)</span>	<span class="comment">//计算假设函数的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//sum += para[0] * fea[0] + para[1] * fea[1] + para[2] * fea[2] * fea[2] + para[3] * fea[3] * fea[3];</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += para[i] * fea[i] + para[i + PARAMETER] * fea[i] * fea[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (<span class="number">1.0</span> + <span class="built_in">exp</span>(-sum));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">costVal</span><span class="params">(<span class="keyword">double</span> para[], <span class="keyword">double</span> allX[][PARAMETER + <span class="number">1</span>], <span class="keyword">double</span> label[], <span class="keyword">int</span> amount, <span class="keyword">int</span> count)</span>	<span class="comment">//计算代价函数的值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; amount; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> hy = hypoVal(para, allX[i], PARAMETER);</span><br><span class="line">        sum += label[i] * <span class="built_in">log</span>(hy) + (<span class="number">1</span> - label[i]) * <span class="built_in">log</span>(<span class="number">1</span> - hy);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"now the cost value is: "</span> &lt;&lt; -(<span class="number">1.0</span> / <span class="keyword">double</span> (amount)) * sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> -(<span class="number">1.0</span> / <span class="keyword">double</span> (amount)) * sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">now the cost value is: 0.693147</span><br><span class="line">now the theta parameters are: -7.8047e-19 0.0785866 -3.03516e-18 0.0549665 </span><br><span class="line">...</span><br><span class="line">now the cost value is: 0.0888141</span><br><span class="line">now the theta parameters are: 0.133379 9.82312 -8.23081 -1.38364 </span><br><span class="line">now the cost value is: 0.0887954</span><br><span class="line">now the theta parameters are: 0.133374 9.82487 -8.23255 -1.38377 </span><br><span class="line">...</span><br><span class="line">now the theta parameters are: 0.127623 11.3934 -9.78998 -1.47413 </span><br><span class="line">now the cost value is: 0.0743945</span><br><span class="line">共进行2996次梯度下降迭代</span><br><span class="line">precision: 0.971014 recall: 1</span><br></pre></td></tr></table></figure>
-<p>可以看到代价函数的值为0.074<br>可以认为训练结果很好<br>可以看到在测试集上，准确率为97%，查全率为100%<br>可以认为学习器泛化能力很强，分类效果非常好</p>
-<h2 id="决策边界"><a href="#决策边界" class="headerlink" title="决策边界"></a>决策边界</h2><p>根据结果我们可以绘制出学习结果，如下图所示<br><img src="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/trainingSet.png" alt="trainingSet.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/29/暑期机器学习小组模型实现-Logistic-Regression/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模型评估" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/24/模型评估/">模型评估</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/24/模型评估/" class="archive-article-date">
-  	<time datetime="2018-07-24T11:45:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="错误率-error-rate"><a href="#错误率-error-rate" class="headerlink" title="错误率(error rate)"></a>错误率(error rate)</h2><p>我们把分类错误的样本占样本总数的比例称为“错误率”；与之对应的是精度<code>accuracy</code>，即“精度 = 1 - 错误率”。（隐式地假设了均等代价）</p>
-<p>更一般的，我们把学习器的实际预测输出与样本的真实输出之间的差异称为误差<code>error</code>。</p>
-<h2 id="欠拟合-underfitting-与过拟合-overfitting"><a href="#欠拟合-underfitting-与过拟合-overfitting" class="headerlink" title="欠拟合(underfitting)与过拟合(overfitting)"></a>欠拟合(underfitting)与过拟合(overfitting)</h2><p>欠拟合意味着学习器对训练样本的一般性质尚未学好，过拟合会导致泛化性能的下降。</p>
-<p>欠拟合比较容易克服，过拟合是机器学习面临的关键障碍。但过拟合是无法彻底避免的，我们所能做的只是缓解。</p>
-<p>一般来说，偏差过大意味着欠拟合，方差过大对应着过拟合。</p>
-<h2 id="模型选择问题-model-selection"><a href="#模型选择问题-model-selection" class="headerlink" title="模型选择问题(model selection)"></a>模型选择问题(model selection)</h2><p>理想的解决方案是对候选模型的“泛化误差”进行评估，然后选择泛化误差最小的那个模型。但我们无法直接获得泛化误差，训练误差又因为过拟合现象不适合作为标准。所以我们采用以下的评估方法。</p>
-<p>评估方法：将数据分为训练集与测试集，通过测试集<code>testing set</code>来测试学习器对新样本的判别能力，然后以测试集上的测试误差近似作为泛化误差，我们通常假设测试样本也是从样本真实分布中独立同分布采样而得。注意测试集应尽量与训练集互斥。</p>
-<p>产生训练集与测试集的常见方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">留出法：直接将数据集划分为两个互斥的集合（大约2/3~4/5的样本用于训练，剩余样本用于测试），注意需要保持数据分布的一致性，从采样的方面看应采用分层采样。使用留出法时一般要采用若干次随机划分、重复进行实验评估后取平均值作为留出法的评估结果。</span><br><span class="line"></span><br><span class="line">交叉验证法：将数据分为大小差不多的k个互斥的集合（分层采样），k-1个用于训练，剩余的用于测试，重复k次。与留出法类似，k折交叉验证法通常要随机使用不同的划分p次，取均值作为评估结果。</span><br><span class="line"></span><br><span class="line">自助法：有放回的从含有m个样本的数据集D中采样，每次采样一个，这个过程重复m次，得到新的数据集D&apos;，那么D中不在新数据集中出现的数据大概占0.368。于是我们用D&apos;作为训练集，用D\D&apos;作为测试集。</span><br></pre></td></tr></table></figure>
-<p>更一般的，我们按照6:2:2的比例将数据集分为训练集<code>traing set</code>，验证集<code>cross validation set</code>，测试集<code>test set</code>。</p>
-<p>通过训练集训练得到多个模型，通过验证集计算并选择在验证集上的仍误差较小的模型，最后通过测试集计算选中模型的泛化误差</p>
-<h2 id="性能度量-performance-measure"><a href="#性能度量-performance-measure" class="headerlink" title="性能度量(performance measure)"></a>性能度量(performance measure)</h2><p>对于回归任务，常用的性能度量是“均方误差”，或代价函数。</p>
-<p>对于分类任务，常用的性能度量为以下几种：</p>
-<ul>
-<li>错误率<code>error rate</code>与精度<code>accuracy</code></li>
-<li>查准率<code>precision</code>与查全率<code>recall</code></li>
-</ul>
-<p>首先，我们定义：</p>
-<ol>
-<li>TN / True Negative: case was negative and predicted negative </li>
-<li>TP / True Positive: case was positive and predicted positive </li>
-<li>FN / False Negative: case was positive but predicted negative </li>
-<li>FP / False Positive: case was negative but predicted positive</li>
-</ol>
-<blockquote>
-<p>P = TP / (TP + FP)</p>
-</blockquote>
-<blockquote>
-<p>R = TP / (TP + FN)</p>
-</blockquote>
-<p>一般来说，查准率高时查全率偏低，查全率高时查准率偏低。</p>
-<p>直观来看，大致如下图所示：<br><img src="/2018/07/24/模型评估/PR.png" alt="PR"></p>
-<h2 id="P-R图"><a href="#P-R图" class="headerlink" title="P-R图"></a>P-R图</h2><p>以查准率为纵轴，查全率为横轴作图得到P-R图。一般来说，如果曲线A完全“包住”了曲线B，那么可以认为前者性能更好。</p>
-<p>P-R图上查准率=查全率的点为平衡点BEP<code>break-even point</code></p>
-<p>与BEP对应的是F1度量：F1 = ( 2 <em> P </em> R ) / ( P + R )</p>
-<p>F1度量的一般形式为 F1β = [ ( 1 + β^2 ) <em> P </em> R ] / [ ( β^2 * P ) + R ]</p>
-<p>β &gt; 1时查全率有更大影响；β &lt; 1时查准率有更大影响。</p>
-<p>ROC<code>receiver operating characteristic</code> Curve<br>ROC曲线纵轴为真正例率TPR，横轴为假正例率FPR，用来评估一般情况下学习器泛化性能的好坏。</p>
-<p>AUC(area under ROC curve)</p>
-<p>对于ROC曲线，常用曲线下面积，即AUC来度量学习器的性能。</p>
-<h2 id="代价敏感错误率与代价曲线"><a href="#代价敏感错误率与代价曲线" class="headerlink" title="代价敏感错误率与代价曲线"></a>代价敏感错误率与代价曲线</h2><p>前面的性能度量其实都隐式地假设了，学习器做出错误分类时的代价是一样的，</p>
-<p>然而往往在现实生活中，不同的错误的代价是不同的。</p>
-<p>为权衡不同错误所造成的不同损失，可为错误赋予“非均等代价”<code>unequal cost</code>，</p>
-<p>我们所希望的不再是简单的最小化错误次数，而是希望最小化“总体代价”。</p>
-<p>在非均等代价下，ROC曲线不能直接反映学习器的期望总体代价，而“代价曲线”则可以达到目的。</p>
-<h2 id="比较检验"><a href="#比较检验" class="headerlink" title="比较检验"></a>比较检验</h2><p>学习器性能的比较是很复杂的一件事，简单地讲，学习器的性能评估结果可能会随测试集的不同而有很大差异。</p>
-<p>因而我们需要考虑的是，若在测试集T上观察到学习器A比学习器B好，</p>
-<p><strong>那么学习器A的泛化性能是否在统计意义上要优于学习器B。</strong></p>
-<p>而假设检验，为我们的考虑提供了解决办法。</p>
-<p>这牵涉到一定的数学知识，总的思路大致是：</p>
-<p>由样本的测试错误率推出学习器的泛化错误率的分布，并在统计意义上得出结论：是否拒绝相应的假设</p>
-<h3 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h3><p>对一个测试集中的数据进行分类，单次分类的错误的概率为β0，总的测试错误率为β1，那么泛化错误率β0的学习器被测得测试错误率为β1的概率分布满足二项分布。</p>
-<p>提出原假设H0，备择假设H1，由α求得临界值，若测试错误率小于临界值，在α的显著度下，假设H0不能被拒绝，即能以1-α的置信度认为H0成立，否则假设H0可以被拒绝，即在显著度为α的情况下可以认为H1成立。</p>
-<p> 大多时候，我们需要进行多次训练/测试，得到多个测试错误率，这时我们采用另一种相似的方法—-t检验</p>
-<h3 id="t检验"><a href="#t检验" class="headerlink" title="t检验"></a>t检验</h3><p>多次留出法或交叉验证法得到多个测试错误率，由样本集的均值和方差，推出学习器的均值（泛化错误率）。</p>
-<p>将k个测试错误率看做泛化错误率的独立采样，构造服从自由度为k - 1的t分布的变量 </p>
-<p>考虑双边假设，在一定的显著度下，得出统计意义上的结论：是否拒绝相应的假设</p>
-<p>以上两种方法适用于对单个学习器的泛化性能进行检验，对于多个学习器性能的比较，我们采用以下的方法：</p>
-<h3 id="交叉验证t检验"><a href="#交叉验证t检验" class="headerlink" title="交叉验证t检验"></a>交叉验证t检验</h3><p>基于一个数据样本集对不同的学习器性能进行比较。</p>
-<p>这里的基本思想是若两个学习器的性能相同，则它们使用相同的训练/测试集得到的测试错误率应相同。</p>
-<p>对每对结果求差△，若两个学习器性能相同，则差值均值应为零。因此可根据差值△1、△2、△3……△k 来对“学习器A和学习器B性能相同”这个假设做t检验，计算出差值的均值与方差。同样的对△构造新的随机变量，在显著度α下，计算出临界值进行判断是否拒绝原假设。</p>
-<h3 id="McNemar-检验"><a href="#McNemar-检验" class="headerlink" title="McNemar 检验"></a>McNemar 检验</h3><p>对于二分类问题，由测试数据得到e00，e01，e10，e11</p>
-<p>构造服从自由度为1的卡方分布的变量，并在一定的显著度下，得出在统计意义上的结论：是否拒绝相应的假设。</p>
-<p>即两学习器的性能是否有显著差异。</p>
-<h3 id="Friedman-检验-与-Nemenyi-后续检验"><a href="#Friedman-检验-与-Nemenyi-后续检验" class="headerlink" title="Friedman 检验 与 Nemenyi 后续检验"></a>Friedman 检验 与 Nemenyi 后续检验</h3><p>对基于多个数据样本集的多个学习器性能进行比较。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.使用留出法或交叉验证法得到每个算法在不同数据集上的测试结果。</span><br><span class="line"></span><br><span class="line">2.然后在每个数据集上根据测试性能有好到坏排序，并赋序值1，2，... ；若算法测试性能相同，则平分序值。</span><br><span class="line"></span><br><span class="line">3.得到每个模型的平均序值。</span><br><span class="line"></span><br><span class="line">4.构造符合卡方分布/F分布的随机变量。</span><br><span class="line"></span><br><span class="line">5.在显著度α下，得到临界值，判断是否拒绝原假设H0:“所有算法的性能相同”。</span><br><span class="line"></span><br><span class="line">6.若拒绝原假设，这时需进行后续检验，计算出平均序值差别的临界值域CD，若两算法的平均序值之差超过了临界值域CD， 则以 相应的置信度拒绝“两个算法性能相同”这一假设。</span><br></pre></td></tr></table></figure></p>
-<h2 id="偏差与方差"><a href="#偏差与方差" class="headerlink" title="偏差与方差"></a>偏差与方差</h2><ul>
-<li><p>噪声：标记值与真实值的差的平方的期望。</p>
-</li>
-<li><p>偏差：预测输出的期望与与真实标记的差别。</p>
-</li>
-</ul>
-<p>对算法的期望泛化误差进行分解得：</p>
-<p><strong><em>E(f;D) = bias^2(x) + var(x) + ε^2</em></strong></p>
-<p>也就是说，泛化误差可分解为偏差、方差与噪声之和。</p>
-<p>偏差刻画了学习算法本身的拟合能力</p>
-<p>方差刻画了数据扰动所造成的影响</p>
-<p>噪声刻画了问题本身的学习难度</p>
-<p>由此可见，学习器的泛化性能是由学习算法的能力、数据的充分性、以及学习任务本身的难度所共同决定的。</p>
-<p>并且可以看到，当偏差和方差都较小的时候，我们可以得到泛化性能较好的学习器，但往往偏差和方差是有冲突的，</p>
-<p>即随着模型训练程度的增加，模型对数据的拟合程度越来越高，偏差就会越小，方差会越大，模型受数据变动的影响越大，</p>
-<p>即会出现过拟合的现象。</p>
-<p>所以，我们一般将数据集分为三部分：</p>
-<p>一般的，我们按照6:2:2的比例将数据集分为训练集<code>traing set</code>，验证集<code>cross validation set</code>，测试集<code>test set</code>。</p>
-<p>通过训练集训练得到多个模型，通过验证集计算并选择在验证集上的仍误差较小的模型，</p>
-<p>最后通过测试集计算选中模型的泛化误差，这样得到的学习器具有较好的性能。</p>
-<h2 id="附思维导图："><a href="#附思维导图：" class="headerlink" title="附思维导图："></a>附思维导图：</h2><p><img src="/2018/07/24/模型评估/思维导图.png" alt="SWDT"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/24/模型评估/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-机器学习概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/24/机器学习概述/">机器学习概述</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/24/机器学习概述/" class="archive-article-date">
-  	<time datetime="2018-07-24T11:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-什么是机器学习"><a href="#1-什么是机器学习" class="headerlink" title="1.什么是机器学习"></a>1.什么是机器学习</h2><p>人类自身的活动大多是基于经验做出的判断。我们通过积累经验，通过对经验的利用，对新情况做出有效的决策。那么计算机能帮忙吗？机器学习正是这样一门学科，它致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。<br>    在计算机系统中，“经验”以数据的形式存在，机器学习即是研究在数据的基础上产生“模型”<code>model</code>的算法，也即“学习算法”<code>learning algorithm</code>。学习算法基于数据产生模型，在面对新的数据时，模型会做出相应的判断。</p>
-<h2 id="2-机器学习的任务是什么"><a href="#2-机器学习的任务是什么" class="headerlink" title="2.机器学习的任务是什么"></a>2.机器学习的任务是什么</h2><p>当今世界，数据越来越多也越来越重要，数据的收集、存储、处理、应用问题也需要我们深入的研究。机器学习的任务即是对数据进行处理：包括但不限于分类、回归预测、聚类、决策。<br>    数据分为离散的和连续的，有标记<code>label</code>/特征<code>feature</code>的和无标记/特征的。<br>分类分为二分类和多分类，回归分为线性回归和非线性回归，机器学习分为监督学习、无监督学习和强化学习。</p>
-<h2 id="3-机器学习的发展历程"><a href="#3-机器学习的发展历程" class="headerlink" title="3.机器学习的发展历程"></a>3.机器学习的发展历程</h2><p>二十世纪五十年代：初期已有机器学习相关研究，中后期，基于神经网络的“连接主义”<code>connectionism</code>学习开始出现。</p>
-<p>二十世纪六七十年代：基于逻辑表示的“符号主义”<code>symbolism</code>学习技术蓬勃发展。以决策理论为基础的学习技术以及强化学习技术等也得到发展。</p>
-<p>二十世纪五十年代到七十年代初：人工智能研究处于推理期，那时人们认为只要赋予机器逻辑推理的能力，机器就能具有智能。</p>
-<p>代表性工作：逻辑理论家程序<code>logic theorist</code>、通用问题求解程序<code>general problem solving</code>。</p>
-<p>二十世纪七十年代中期：人工智能研究进入了知识期，人们逐渐意识到要使机器具有智能，就必须设法使机器具有知识。这一时期出现了大量的专家系统。</p>
-<p>二十世纪八十年代：是机器学习成为一个独立的学科领域、各种机器学习技术百花初绽的时期。机器学习被视为“解决知识工程瓶颈问题的关键”而走上人工智能主舞台。</p>
-<p>二十世纪九十年代中期：“统计学习”<code>statistical learning</code>闪亮登场并迅速占据主流舞台，代表性技术是支持向量机<code>support vector machine</code>，简称SVM。以及更一般的核方法<code>kernel methods</code>。</p>
-<p>二十一世纪初：连接主义学习卷土重来，掀起了以“深度学习”为名的热潮。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/24/机器学习概述/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -608,10 +225,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
